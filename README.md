@@ -12,7 +12,7 @@ server1$ cat hashleft
 49cf89dda913336fdbf2efb6a16a24f2568fddff,./README.md
 122132961dc35188e1c4a7abdc337736df99fdf8,./file_hashes.py
 
-server2$ /file_hashes.py . hashright
+server2$ ./file_hashes.py . hashright
 Adding ./README.md
 Adding ./file_hashes.py
 2 unique hashes
