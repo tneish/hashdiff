@@ -24,7 +24,7 @@ def load_dict(csvfile):
                 print('Bad line <' + l + '>')
                 badlines += 1
                 continue
-            hashdict[s[0]] = s[1]
+            hashdict[s[0]] = ','.join(s[1:])
             goodlines += 1
     return (hashdict, goodlines)
 
