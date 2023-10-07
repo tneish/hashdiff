@@ -16,7 +16,7 @@ def hashfiles(filelist):
     for f in filelist:
         try:
             file_size = os.path.getsize(f)
-            if file_size is 0: continue
+            if (file_size == 0): continue
             with open(f, 'rb') as fobj:
                 print('Adding ' + str(f))
                 h = hashlib.sha1()
@@ -39,6 +39,17 @@ def hashfiles(filelist):
             pass
     return hashdict
 
+def is_writable(fname):
+    if os.path.exists(fname):
+        if os.path.isfile(fname):
+            return os.access(fname, os.W_OK)
+        else:
+            return False 
+    parent = os.path.dirname(fname)
+    if not parent: 
+        parent = '.'
+    return os.access(parent, os.W_OK)
+
 def writecsv(hashlist, filename):
     with open(filename, 'w') as fobj:
         for h in hashlist.keys():
@@ -55,6 +66,10 @@ try:
 except Exception as e:
     print(str(e))
     usage()
+    sys.exit(1)
+
+if not is_writable(outfile):
+    print('File ' + outfile + ' is not writeable!')
     sys.exit(1)
 
 filelist = glob.glob(PATH + '/**/*', recursive=True)
