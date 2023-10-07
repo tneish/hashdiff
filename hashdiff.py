@@ -20,7 +20,7 @@ def load_dict(csvfile):
     with open(csvfile, 'r') as fptr:
         for l in fptr.readlines():
             s = l.split(',')
-            if ((len(s) < 2) or (len(s[0]) is not 40)):
+            if ((len(s) < 2) or (len(s[0]) != 40)):
                 print('Bad line <' + l + '>')
                 badlines += 1
                 continue
